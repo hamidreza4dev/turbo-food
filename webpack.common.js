@@ -1,10 +1,9 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/js/app.js',
   output: {
-    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'images/[hash][ext][query]',
   },
@@ -15,10 +14,6 @@ module.exports = {
         use: ['html-loader'],
       },
       {
-        test: /\.scss$/i,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-      },
-      {
         test: /\.(png|jpg|svg|gif|jpeg)/,
         type: 'asset/resource',
       },
@@ -26,7 +21,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: '/src/index.html',
     }),
   ],
 };
