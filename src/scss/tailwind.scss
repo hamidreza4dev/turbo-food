@@ -1,3 +1,238 @@
+@import './icons.scss';
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import './customize.scss';
+
+@layer base {
+  body {
+    font-family: 'Sen', sans-serif;
+  }
+
+  i[class^='icon-'],
+  i[class*=' icon-'] {
+    font-size: 1.5rem;
+  }
+
+  i[class^='icon-']:before,
+  i[class*=' icon-']:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: inherit;
+    display: flex;
+  }
+}
+
+@layer components {
+  .modal {
+    @apply bg-white shadow-xl fixed pointer-events-none transform -translate-y-1/2 translate-x-1/2 scale-90 top-2/4 right-2/4 origin-center transition opacity-0 duration-500 ease-in-out rounded-lg w-[1000px] lg:w-11/12 p-12 lg:max-h-[95vh] lg:overflow-y-scroll;
+    z-index: 9999;
+  }
+
+  .modal.active {
+    @apply -translate-y-1/2 translate-x-1/2 scale-100 pointer-events-auto opacity-100;
+  }
+
+  .close-modal-btn {
+    @apply absolute top-2 right-2 transition hover:rotate-90;
+
+    i {
+      @apply text-4xl;
+    }
+  }
+
+  .overlay {
+    @apply fixed top-0 right-0 h-screen w-screen bg-primary-dark/50  pointer-events-none backdrop-filter backdrop-blur-sm opacity-0 transition-opacity;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 50;
+  }
+
+  .overlay.active {
+    @apply opacity-100 pointer-events-auto;
+  }
+}
+
+@layer components {
+  .upload-recipe-form {
+    [type='text'],
+    [type='number'] {
+      @apply border border-primary-light rounded-md p-2 placeholder:text-primary-dark/40 outline-none focus:bg-primary-light/40 transition col-span-3;
+    }
+
+    [type='file'] {
+      @apply file:bg-primary-gradient file:rounded-md file:border-0 file:outline-0 file:text-white file:p-2 file:hover:opacity-70 file:transition file:cursor-pointer col-span-3;
+    }
+  }
+}
+
+@layer components {
+  .btn-rounded {
+    @apply flex gap-2 items-center bg-primary-gradient py-3 px-10 rounded-full text-white hover:scale-105 transition-transform uppercase;
+  }
+
+  .btn-tiny {
+    @apply rounded-full text-primary-blue bg-primary-lighten py-2 px-3 flex items-center gap-2 hover:bg-primary-light transition;
+  }
+
+  .clear-btn {
+    @apply text-primary-red flex gap-2 transition hover:translate-x-1;
+
+    span {
+      @extend .text-primary-md-bold;
+    }
+  }
+
+  .text-primary-sm-bold {
+    @apply text-sm font-bold uppercase;
+  }
+
+  .text-primary-sm-normal {
+    @apply text-sm font-normal uppercase;
+  }
+
+  .text-primary-md-bold {
+    @apply text-base font-bold uppercase;
+  }
+
+  .text-primary-md-normal {
+    @apply text-base font-normal uppercase;
+  }
+
+  .title {
+    @apply text-center text-primary-blue uppercase text-xl font-bold;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply relative py-3 lg:p-0 lg:static;
+  }
+
+  .nav-action {
+    @apply flex gap-2 items-center px-6 py-7 lg:px-2 lg:py-2 lg:rounded-md hover:bg-primary-light rounded-primary cursor-pointer transition text-primary-dark group-hover:first:bg-primary-light /* lg:group-hover:first:bg-opacity-0 */;
+  }
+
+  .nav-dropdown {
+    @apply transition opacity-0 -translate-y-2 pointer-events-none absolute bg-white rounded-primary right-0 top-full z-50 w-96 py-4 overflow-hidden
+    group-hover:opacity-100 group-hover:-translate-y-1 group-hover:pointer-events-auto;
+
+    &.active {
+      @apply opacity-100 -translate-y-1 pointer-events-auto;
+    }
+  }
+
+  .nav-handler {
+    @apply flex gap-1 
+         lg:bg-white/90 lg:rounded-md lg:flex-col lg:p-3 lg:absolute lg:top-full lg:right-0 lg:z-50 
+         lg:transition lg:opacity-0 lg:-translate-y-2 lg:pointer-events-none;
+
+    &.active {
+      @apply opacity-100 -translate-y-1;
+    }
+  }
+
+  .search-box {
+    @apply flex bg-white rounded-full focus-within:-translate-y-1 focus-within:shadow-primary transition;
+
+    .search-filed {
+      @apply placeholder:text-primary-dark/40 rounded-full outline-none w-64 pl-4 xl:w-44 lg:w-full;
+    }
+  }
+
+  .search-list {
+    @apply absolute bg-white rounded-primary w-full min-h-[40vh] z-20 shadow-2xl shadow-gray-900/10 p-2 top-full 
+          opacity-0 -translate-y-2 pointer-events-none transition;
+
+    .search-list-item {
+      @apply p-2 transition rounded-primary hover:bg-primary-blue/5;
+
+      &.active {
+        @apply bg-primary-lighten;
+      }
+    }
+  }
+}
+
+@layer components {
+  .blue-overlay {
+    @apply relative before:absolute before:w-full before:h-full before:rounded-full before:bg-primary-gradient before:opacity-40;
+  }
+
+  .search-results {
+    @apply grow;
+
+    .preview {
+      @apply p-4 flex gap-3 items-center transition hover:bg-primary-lighten hover:-translate-y-1;
+    }
+
+    .preview-image {
+      @apply grow-0;
+      @extend .blue-overlay;
+    }
+
+    .preview-description {
+      @apply text-primary-sm-normal grow;
+
+      .preview-title {
+        @apply text-primary-blue line-clamp-1;
+      }
+
+      .preview-info {
+        @apply flex justify-between text-primary-dark;
+      }
+    }
+  }
+}
+
+@layer components {
+  .recipe {
+    @apply pr-9 lg:pr-0 w-8/12 lg:w-full;
+
+    .recipe-image {
+      @extend .blue-overlay;
+      @apply before:rounded-primary;
+    }
+
+    .recipe-title {
+      @apply bg-primary-gradient rounded-primary p-4 box-decoration-clone leading-[1.75] lg:leading-[2.3];
+    }
+  }
+
+  .sidebar {
+    @apply lg:rounded-primary w-4/12 bg-white rounded-tr-primary rounded-bl-primary overflow-hidden flex flex-col py-4
+    lg:absolute lg:z-10 lg:h-[calc(100%-2rem)] lg:w-[calc(100%-4rem)] sm:h-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)]
+    lg:pointer-events-none lg:opacity-0 lg:transition-opacity;
+
+    &.active {
+      @apply lg:pointer-events-auto lg:opacity-100;
+    }
+  }
+}
+
+@layer components {
+  .main-icon {
+    @apply flex items-center justify-center text-primary-blue bg-primary-light rounded-full aspect-square py-2 px-3 transition hover:bg-primary-blue/20;
+  }
+
+  .bookmark-btn {
+    @extend .main-icon;
+
+    &.active {
+      @apply bg-primary-blue hover:opacity-70 text-white hover:bg-primary-blue;
+    }
+  }
+
+  .btn-serving {
+    @apply transition-transform hover:rotate-180 duration-300;
+  }
+}

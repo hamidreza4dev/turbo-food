@@ -1,18 +1,297 @@
 <!DOCTYPE html>
 <html lang="en" class="min-h-full">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Turbo Fooooood !</title>
 </head>
-<body class="bg-primary-gradient bg-cover bg-no-repeat p-28">
+<body class="bg-primary-gradient bg-cover bg-no-repeat p-28 xl:p-10 xs:p-3">
 
-  <div class="container bg-primary-lighten rounded-primary">
-    <nav class="p-3">
-      <div><img src="assets/Logo.svg" alt=""></div>
-    </nav>
+  <div class="overlay"></div>
+  <div class="modal" id="addRecipeModal">
+    <button class="close-modal-btn"><i class="icon icon-close"></i></button>
+    <form class="grid grid-cols-2 md:grid-cols-1 gap-12 upload-recipe-form">
+      <div>
+        <h1 class="text-2xl text-primary-dark font-bold mb-6">RECIPE DATA</h1>
+        <div class="grid grid-cols-4 md:grid-cols-1 gap-4 items-center">
+          <label>Title</label> 
+          <input placeholder="Avocado" name="title" type="text" required> 
+          <label>URL</label> 
+          <input placeholder="Htpps://..." name="sourceUrl" type="text" required> 
+          <label>Image</label>
+          <input placeholder="TEST23" name="image" type="file" required> 
+          <label>Publisher</label> 
+          <input placeholder="Hamidreza Firouzi"  name="publisher" type="text" required> 
+          <label>Prep time</label>
+          <input placeholder="10" name="cookingTime" type="number" required> 
+          <label>Servings</label> 
+          <input placeholder="10" name="servings" type="number" required>
+        </div>
+      </div>
+
+      <div>
+        <h1 class="text-2xl text-primary-dark font-bold mb-6">RECIPE DATA</h1>
+        <div class="grid grid-cols-4 md:grid-cols-1 gap-4 items-center">
+          <label>Ingredient 1</label>
+          <input placeholder="0.5, kg, Rice" type="text" name="ingredient-1" required pattern="^[a-zA-Z]+(,[a-zA-Z]+)*$"> 
+          <label>Ingredient 2</label>
+          <input placeholder="Format: 'Quantity,Unit,Description'" type="text" name="ingredient-2" required pattern="^[a-zA-Z]+(,[a-zA-Z]+)*$"> 
+          <label>Ingredient 3</label>
+          <input placeholder="Format: 'Quantity,Unit,Description'" type="text" name="ingredient-3" required pattern="^[a-zA-Z]+(,[a-zA-Z]+)*$"> 
+          <label>Ingredient 4</label>
+          <input placeholder="Format: 'Quantity,Unit,Description'" type="text" name="ingredient-4" required pattern="^[a-zA-Z]+(,[a-zA-Z]+)*$"> 
+          <label>Ingredient 5</label>
+          <input placeholder="Format: 'Quantity,Unit,Description'" type="text" name="ingredient-5" required pattern="^[a-zA-Z]+(,[a-zA-Z]+)*$"> 
+          <label>Ingredient 6</label>
+          <input placeholder="Format: 'Quantity,Unit,Description'" type="text" name="ingredient-6" required pattern="^[a-zA-Z]+(,[a-zA-Z]+)*$"> 
+        </div>
+      </div>
+
+      <div class="col-span-full">
+        <button type="submit" class="btn-rounded mx-auto"><i class="icon icon-cloud-plus"></i>UPLOAD RECIPE</button>
+      </div>
+    </form>
   </div>
+
+  <div class="container flex flex-col min-h-[1170px] bg-primary-lighten rounded-primary relative before:absolute before:top-0 before:left-0 before:-z-10 before:bg-primary-lighten/30 before:rounded-primary before:w-full before:h-full before:-rotate-3 after:absolute after:top-0 after:left-0 after:-z-10 after:bg-primary-lighten/30 after:rounded-primary after:w-full after:h-full after:rotate-3 xs:before:hidden xs:after:hidden">
+    <nav class="px-3 pl-8 lg:pr-8 flex items-center justify-between lg:relative lg:py-3 lg:gap-8 md:gap-4 sm:flex-wrap sm:p-6">
+      <div><img src="assets/Logo.svg" alt="" /></div>
+
+      <div class="lg:grow relative sm:w-full sm:order-last">
+        <form action="" class="search-box peer">
+          <input
+            type="search"
+            name="searchBox"
+            autocomplete="off"
+            placeholder="Search over 1,000,000 recipes..."
+            class="search-filed"
+          />
+          <button class="btn-rounded">
+            <i class="icon icon-search"></i>
+            <span class="text-sm font-bold">SEARCH</span>
+          </button>
+        </form>
+
+        <ul class="search-list peer-focus-within:opacity-100 peer-focus-within:translate-y-2 peer-focus-within:pointer-events-auto">
+          <li class="search-list-item">avocado</li>
+        </ul>
+      </div>
+
+      <button id="menuBtn" class="hidden lg:block ml-auto"><i class="icon icon-menu"></i></button>
+
+      <div>
+        <div class="nav-handler">
+          <div class="nav-item group">
+            <button class="nav-action add-recipe">
+              <i class="icon icon-edit"></i>
+              <span class="text-primary-sm-bold">ADD RECIPE</span>
+            </button>
+          </div>
   
+          <div class="nav-item group">
+            <div class="nav-action">
+              <i class="icon icon-bookmark"></i>
+              <span class="text-primary-sm-bold">BOOKMARKS</span>
+            </div>
+  
+            <div class="nav-dropdown">
+              <div class="search-results">
+                <a class="preview" href="#">
+                  <figure class="preview-image">
+                    <img
+                      src="assets/image-placeholder.jpeg"
+                      alt=""
+                      class="rounded-full w-14 h-14 object-cover object-center"
+                    />
+                  </figure>
+      
+                  <div class="preview-description">
+                    <h3 class="preview-title">
+                      Cauliflower Pizza Crust (with BBQ ...
+                    </h3>
+                    <div class="preview-info">
+                      <p class="opacity-40">Closet Cooking</p>
+                      <span>39$</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+  
+              <div class="p-4 pb-0">
+                <button class="clear-btn">
+                  <span><i class="icon icon-clear"></i></span>
+                  clear <span>3</span> items
+                </button>
+              </div>
+            </div>
+          </div>
+  
+          <div class="nav-item group">
+            <div class="nav-action">
+              <i class="icon icon-bag"></i>
+              <span class="text-primary-sm-bold">SHOPING CART</span>
+            </div>
+  
+            <div class="nav-dropdown">
+              <div class="search-results">
+                <a class="preview" href="#">
+                  <figure class="preview-image">
+                    <img
+                      src="assets/image-placeholder.jpeg"
+                      alt=""
+                      class="rounded-full w-14 h-14 object-cover object-center"
+                    />
+                  </figure>
+      
+                  <div class="preview-description">
+                    <h3 class="preview-title">
+                      Cauliflower Pizza Crust (with BBQ ...
+                    </h3>
+                    <div class="preview-info">
+                      <p class="opacity-40">Closet Cooking</p>
+                      <span>39$</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+  
+              <div class="p-4 pb-0 flex justify-between">
+                <button class="clear-btn">
+                  <span><i class="icon icon-clear"></i></span>
+                  clear <span>3</span> items
+                </button>
+  
+                <p>total price : <span class="text-primary-md-bold">117 $</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="flex grow gap-6 lg:px-8 sm:px-6 lg:pb-8 sm:pb-6 lg:relative">
+      <aside class="sidebar test">
+        <div class="px-4 mb-4 flex justify-between">
+          <button class="btn-tiny">
+            <i class="icon icon-sort"></i>
+            sort: <span>A-Z</span>
+          </button>
+
+          <button class="btn-tiny aspect-square">
+            <i class="icon icon-filter"></i>
+          </button>
+        </div>
+
+        <div class="search-results">
+          <a class="preview" href="#">
+            <figure class="preview-image">
+              <img
+                src="assets/image-placeholder.jpeg"
+                alt=""
+                class="rounded-full w-14 h-14 object-cover object-center"
+              />
+            </figure>
+
+            <div class="preview-description">
+              <h3 class="preview-title">
+                Cauliflower Pizza Crust (with BBQ ...
+              </h3>
+              <div class="preview-info">
+                <p class="opacity-40">Closet Cooking</p>
+                <span>39$</span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="px-4 space-y-4 mt-auto">
+          <div class="flex justify-between">
+            <button class="btn-tiny">
+              <i class="icon icon-arrow-left"></i>
+              page 1
+            </button>
+            <div class="rounded-full text-primary-blue bg-primary-lighten flex items-center justify-center aspect-square h-10">1</div>
+            <button class="btn-tiny">
+              page 2
+              <i class="icon icon-arrow-right"></i>
+            </button>
+          </div>
+          <p class="text-primary-dark/40 text-center text-sm">
+            © Copyright by Hamidreza Firouzi , enjoy :)
+          </p>
+        </div>
+      </aside>
+
+      <main class="recipe">
+        <div class="relative">
+          <figure class="recipe-image">
+            <img
+              src="assets/image-placeholder.jpeg"
+              alt=""
+              class="w-full h-96 object-cover object-center rounded-primary"
+            />
+          </figure>
+  
+          <div class="-rotate-6 w-1/2 text-4xl text-white font-black absolute top-full left-1/2 -translate-y-3/4 -translate-x-1/2 text-center lg:text-2xl md:w-11/12">
+            <span class="recipe-title">CAULIFLOWER PIZZA CRUST (WITH BBQ CHICKEN PIZZA)</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex py-24 px-20 text-primary-md-normal text-primary-dark lg:px-12 md:px-0 sm:flex-wrap sm:gap-y-4 sm:pb-12">
+            <div class="flex items-center gap-1">
+              <span><i class="icon icon-timer"></i></span>
+              <span class="text-primary-md-bold">75</span> MINUTES
+            </div>
+
+            <div class="flex items-center gap-1 ml-12 sm:ml-auto">
+              <span><i class="icon icon-users"></i></span>
+              <span class="text-primary-md-bold">4</span> SERVINGS
+              <div class="flex items-center ml-2 gap-1">
+                <button class="btn-serving"><i class="icon icon-minus"></i></button>
+                <button class="btn-serving"><i class="icon icon-add"></i></button>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 ml-auto sm:w-full">
+              <div class="flex items-center justify-center">
+                <span class="main-icon"><i class="icon icon-user"></i></span>
+              </div>
+  
+              <div class="flex items-center justify-center">
+                <button class="bookmark-btn"><i class="icon icon-bookmark"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="py-12 px-[72px] bg-primary-light rounded-primary sm:p-6">
+          <h1 class="title">recipe ingredients</h1>
+
+          <ul class="grid grid-cols-2 gap-7 text-primary-dark mt-9 sm:grid-cols-1">
+            <li class="flex gap-4">
+              <span class="text-primary-blue"><i class="icon icon-tick-circle"></i></span>
+              <span>1</span>
+              <p>medium head cauliflower cut into florets</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="py-12 px-[72px] flex flex-col items-center text-center sm:py-10 sm:px-0 sm:pb-4 xs:pb-0">
+          <h1 class="title">HOW TO COOK IT ?</h1>
+
+          <p class="py-6">
+            This recipe was carefully designed and tested by Closet Cooking. Please check out directions at their website.
+          </p>
+
+          <button class="btn-rounded text-lg">
+            <span class="text-sm font-normal DIRECTIONS">DIRECTIONS</span>
+            <i class="icon icon-arrow-right"></i>
+          </button>
+        </div>
+      </main>
+    </section>
+  </div>
 </body>
 </html>

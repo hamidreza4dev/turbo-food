@@ -15,16 +15,20 @@ module.exports = {
       borderRadius: {
         primary: '1.25rem /* 20px */',
       },
+      boxShadow: {
+        primary: '0px 8px 16px rgba(41, 45, 50, 0.1)',
+      },
     },
 
     screens: {
       '2xl': { max: '1535px' },
       xl: { max: '1279px' },
+      '2lg': { max: '1140px' },
       lg: { max: '1023px' },
       md: { max: '767px' },
       sm: { max: '639px' },
-      xs: { max: '479px' },
+      xs: { max: '536px' },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };

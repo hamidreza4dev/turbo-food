@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "start": "npm run icon ; clear ; webpack-dev-server --config webpack.dev.js",
+    "build": "npm run icon ; webpack --config webpack.prod.js",
+    "icon": "fantasticon -c fantasticonrc.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.3.1",
     "css-loader": "^6.6.0",
+    "fantasticon": "^1.2.3",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.5.3",

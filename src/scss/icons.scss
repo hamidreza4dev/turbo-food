@@ -1,0 +1,76 @@
+@font-face {
+    font-family: "icons";
+    src: url("../fonts/icons.ttf?9024eb6cc73ee193b97fe37d534f7c89") format("truetype"),
+url("../fonts/icons.woff?9024eb6cc73ee193b97fe37d534f7c89") format("woff"),
+url("../fonts/icons.woff2?9024eb6cc73ee193b97fe37d534f7c89") format("woff2"),
+url("../fonts/icons.eot?9024eb6cc73ee193b97fe37d534f7c89#iefix") format("embedded-opentype");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-add:before {
+    content: "\f101";
+}
+.icon-arrow-left:before {
+    content: "\f102";
+}
+.icon-arrow-right:before {
+    content: "\f103";
+}
+.icon-bag:before {
+    content: "\f104";
+}
+.icon-bookmark:before {
+    content: "\f105";
+}
+.icon-clear:before {
+    content: "\f106";
+}
+.icon-close:before {
+    content: "\f107";
+}
+.icon-cloud-plus:before {
+    content: "\f108";
+}
+.icon-edit:before {
+    content: "\f109";
+}
+.icon-filter:before {
+    content: "\f10a";
+}
+.icon-flash:before {
+    content: "\f10b";
+}
+.icon-menu:before {
+    content: "\f10c";
+}
+.icon-minus:before {
+    content: "\f10d";
+}
+.icon-search:before {
+    content: "\f10e";
+}
+.icon-sort:before {
+    content: "\f10f";
+}
+.icon-tick-circle:before {
+    content: "\f110";
+}
+.icon-timer:before {
+    content: "\f111";
+}
+.icon-user:before {
+    content: "\f112";
+}
+.icon-users:before {
+    content: "\f113";
+}
