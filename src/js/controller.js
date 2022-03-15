@@ -1,7 +1,8 @@
 import './app';
 import { API_URL, searchQueries } from './config';
 import { getJSON } from './helpers';
-import { loadRecipe, loadSearchResult, state } from './model';
+import { loadRecipe, loadSearchResult, sliceResult, state } from './model';
+import paginationView from './views/paginationView';
 import queryView from './views/queryView';
 import recipeView from './views/recipeView';
 import resultView from './views/resultView';
@@ -53,7 +54,13 @@ const controlSearch = async function () {
 
     // 5. render results
     resultView.sortResult(resultView.getSortingMethod(), state.search.result);
-    resultView.render(state.search.result);
+    resultView.render(sliceResult());
+
+    // 6. render pagination
+    paginationView.render(state.search);
+
+    // 7. reset autoComplete
+    queryView.render(searchQueries);
   } catch (error) {
     resultView.renderError();
     console.error(error);
@@ -76,12 +83,20 @@ const controlSearchResultSorting = function (type) {
     state.search.result
   );
 
-  resultView.render(state.search.result);
+  resultView.render(sliceResult());
+};
+
+// handler pagination
+const controlPagination = function (goto) {
+  resultView.render(sliceResult(goto));
+
+  paginationView.render(state.search);
 };
 
 const init = (function () {
   recipeView.addHandlerRender(controlRecipe);
 
+  paginationView.addHandlerClick(controlPagination);
   searchView.addHandlerSearch(controlSearch);
   searchView.addHandlerTrackInput(controlSearchAutoComplete);
   queryView.addClickHandler(controlQueryClickList);

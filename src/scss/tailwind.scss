@@ -86,6 +86,10 @@
     @apply rounded-full text-primary-blue bg-primary-lighten py-2 px-3 flex items-center gap-2 hover:bg-primary-light transition;
   }
 
+  .pagination {
+    @apply flex justify-between;
+  }
+
   .clear-btn {
     @apply text-primary-red flex gap-2 transition hover:translate-x-1;
 

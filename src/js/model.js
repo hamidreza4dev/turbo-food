@@ -3,7 +3,9 @@ export const state = {
   search: {
     result: [],
     query: '',
+    page: 1,
     sortingMethod: 'none',
+    resultsPerPage: 10,
   },
 };
 
@@ -32,4 +34,13 @@ export const loadSearchResult = function (data) {
       price: Math.floor(Math.random() * 100),
     };
   });
+};
+
+export const sliceResult = function (page = state.search.page) {
+  state.search.page = page;
+
+  const start = (page - 1) * state.search.resultsPerPage;
+  const end = page * state.search.resultsPerPage;
+
+  return state.search.result.slice(start, end);
 };
