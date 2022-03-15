@@ -73,7 +73,7 @@
           </button>
         </form>
 
-        <ul class="search-list peer-focus-within:opacity-100 peer-focus-within:translate-y-2 peer-focus-within:pointer-events-auto">
+        <ul class="search-list">
           <li class="search-list-item">avocado</li>
         </ul>
       </div>
@@ -96,27 +96,25 @@
             </div>
   
             <div class="nav-dropdown">
-              <div class="search-results">
-                <a class="preview" href="#">
-                  <figure class="preview-image">
-                    <img
-                      src="assets/image-placeholder.jpeg"
-                      alt=""
-                      class="rounded-full w-14 h-14 object-cover object-center"
-                    />
-                  </figure>
-      
-                  <div class="preview-description">
-                    <h3 class="preview-title">
-                      Cauliflower Pizza Crust (with BBQ ...
-                    </h3>
-                    <div class="preview-info">
-                      <p class="opacity-40">Closet Cooking</p>
-                      <span>39$</span>
-                    </div>
+              <a class="preview" href="#">
+                <figure class="preview-image">
+                  <img
+                    src="assets/image-placeholder.jpeg"
+                    alt=""
+                    class="rounded-full w-14 h-14 object-cover object-center"
+                  />
+                </figure>
+    
+                <div class="preview-description">
+                  <h3 class="preview-title">
+                    Cauliflower Pizza Crust (with BBQ ...
+                  </h3>
+                  <div class="preview-info">
+                    <p class="opacity-40">Closet Cooking</p>
+                    <span>39$</span>
                   </div>
-                </a>
-              </div>
+                </div>
+              </a>
   
               <div class="p-4 pb-0">
                 <button class="clear-btn">
@@ -134,27 +132,25 @@
             </div>
   
             <div class="nav-dropdown">
-              <div class="search-results">
-                <a class="preview" href="#">
-                  <figure class="preview-image">
-                    <img
-                      src="assets/image-placeholder.jpeg"
-                      alt=""
-                      class="rounded-full w-14 h-14 object-cover object-center"
-                    />
-                  </figure>
+              <a class="preview" href="#">
+                <figure class="preview-image">
+                  <img
+                    src="assets/image-placeholder.jpeg"
+                    alt=""
+                    class="rounded-full w-14 h-14 object-cover object-center"
+                  />
+                </figure>
       
-                  <div class="preview-description">
-                    <h3 class="preview-title">
-                      Cauliflower Pizza Crust (with BBQ ...
-                    </h3>
-                    <div class="preview-info">
-                      <p class="opacity-40">Closet Cooking</p>
-                      <span>39$</span>
-                    </div>
+                <div class="preview-description">
+                  <h3 class="preview-title">
+                    Cauliflower Pizza Crust (with BBQ ...
+                  </h3>
+                  <div class="preview-info">
+                    <p class="opacity-40">Closet Cooking</p>
+                    <span>39$</span>
                   </div>
-                </a>
-              </div>
+                </div>
+              </a>
   
               <div class="p-4 pb-0 flex justify-between">
                 <button class="clear-btn">
@@ -172,19 +168,29 @@
 
     <section class="flex grow gap-6 lg:px-8 sm:px-6 lg:pb-8 sm:pb-6 lg:relative">
       <aside class="sidebar test">
-        <div class="px-4 mb-4 flex justify-between">
-          <button class="btn-tiny">
-            <i class="icon icon-sort"></i>
-            sort: <span>A-Z</span>
-          </button>
-
-          <button class="btn-tiny aspect-square">
-            <i class="icon icon-filter"></i>
-          </button>
+        <div class="filters">
+          <div class="px-4 mb-4 flex justify-between">
+            <button class="btn-tiny w-full justify-between">
+              <i class="icon icon-sort"></i>
+              <span class="mr-auto">sort: </span>
+              <div>
+                <select name="" id="sorting" class="bg-transparent outline-0">
+                  <option value="none">none</option>
+                  <option value="ascending">ascending</option>
+                  <option value="descending">descending</option>
+                  <option value="lowestPrice">lowest price</option>
+                  <option value="highestPrice">highest price</option>
+                </select>
+              </div>
+            </button>
+            <!-- <button class="btn-tiny aspect-square filter-btn">
+              <i class="icon icon-filter"></i>
+            </button> -->
+          </div>
         </div>
 
         <div class="search-results">
-          <a class="preview" href="#">
+          <!-- <a class="preview" href="#">
             <figure class="preview-image">
               <img
                 src="assets/image-placeholder.jpeg"
@@ -202,7 +208,7 @@
                 <span>39$</span>
               </div>
             </div>
-          </a>
+          </a> -->
         </div>
 
         <div class="px-4 space-y-4 mt-auto">
