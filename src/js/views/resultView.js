@@ -30,7 +30,11 @@ class ResultView extends View {
       })
       .join('');
   }
-
+  /**
+   * @param  {String(ascending | descending | lowestPrice | highestPrice | none)} type : sorting method
+   * @param  {Array} targetArray : an array should be effect
+   * @returns  sorting method (type)
+   */
   sortResult(type, targetArray) {
     if (type == 'ascending') {
       targetArray = targetArray.sort(function (a, b) {

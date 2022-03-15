@@ -15,7 +15,9 @@ class SearchView extends View {
       }, 500);
     });
   }
-
+  /**
+   * @param  {boolean} [clear=true] clear input or no ;)
+   */
   getQuery(clear = true) {
     const query = this._input.value;
 

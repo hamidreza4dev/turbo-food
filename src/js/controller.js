@@ -43,13 +43,15 @@ const controlRecipe = async function () {
     recipeView.renderError();
   }
 };
-
+/**
+ * update servings in state and update DOM (include ingredients and servings number)
+ * @param  {Number} updateTo : next number of serving
+ * @returns {undefined} undefined
+ */
 const controlServingsUpdate = function (updateTo) {
   updateServings(updateTo);
 
   recipeView.update(state.recipe);
-
-  // recipeView.render(state.recipe);
 };
 
 // search handlers
@@ -89,11 +91,17 @@ const controlSearchAutoComplete = function () {
   const queries = searchQueries.filter((q) => q.includes(query));
   queryView.render(queries);
 };
-
+/**
+ * set search input value to clicked item in auto complete
+ * @param  {String} value
+ */
 const controlQueryClickList = function (value) {
   searchView.submitCustomValue(value);
 };
-
+/**
+ * sort result and rerender that
+ * @param  {String} type : this parameter will get form resultsView.js
+ */
 const controlSearchResultSorting = function (type) {
   state.search.sortingMethod = resultView.sortResult(
     resultView.getSortingMethod(),
@@ -104,6 +112,10 @@ const controlSearchResultSorting = function (type) {
 };
 
 // handler pagination
+/**
+ * handle pagination
+ * @param  {Number} goto : page number
+ */
 const controlPagination = function (goto) {
   resultView.render(sliceResult(goto));
 

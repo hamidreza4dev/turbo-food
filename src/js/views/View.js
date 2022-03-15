@@ -1,6 +1,10 @@
 export default class View {
   _data;
-
+  /**
+   * generate markup from passed data
+   * @param  {Object} data
+   * @returns {undefined} undefined
+   */
   render(data) {
     if (!data && !Array.from(data).length) this.renderError();
 
@@ -9,7 +13,11 @@ export default class View {
     const markup = this._generateMarkup();
     this._parentElement.insertAdjacentHTML('beforeend', markup);
   }
-
+  /**
+   * update previous DOM with new DOM without flicking effect
+   * @param  {Object} data
+   * @returns {undefined} undefined
+   */
   update(data) {
     this._data = data;
     const newMarkup = this._generateMarkup();
