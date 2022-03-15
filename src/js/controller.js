@@ -1,7 +1,13 @@
 import './app';
 import { API_URL, searchQueries } from './config';
 import { getJSON } from './helpers';
-import { loadRecipe, loadSearchResult, sliceResult, state } from './model';
+import {
+  loadRecipe,
+  loadSearchResult,
+  sliceResult,
+  state,
+  updateServings,
+} from './model';
 import paginationView from './views/paginationView';
 import queryView from './views/queryView';
 import recipeView from './views/recipeView';
@@ -33,6 +39,12 @@ const controlRecipe = async function () {
     console.error(error);
     recipeView.renderError();
   }
+};
+
+const controlServingsUpdate = function (updateTo) {
+  updateServings(updateTo);
+
+  recipeView.render(state.recipe);
 };
 
 // search handlers
@@ -95,6 +107,7 @@ const controlPagination = function (goto) {
 
 const init = (function () {
   recipeView.addHandlerRender(controlRecipe);
+  recipeView.addHandlerServings(controlServingsUpdate);
 
   paginationView.addHandlerClick(controlPagination);
   searchView.addHandlerSearch(controlSearch);

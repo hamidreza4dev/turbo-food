@@ -12,6 +12,15 @@ class RecipeView extends View {
     });
   }
 
+  addHandlerServings(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.btn-serving');
+      if (!btn) return;
+      const { updateTo } = btn.dataset;
+      if (updateTo > 0) handler(+updateTo);
+    });
+  }
+
   _generateMarkup(data = this._data) {
     return `
       <div class="relative">
@@ -37,12 +46,16 @@ class RecipeView extends View {
             }</span> MINUTES
           </div>
 
-          <div class="flex items-center gap-1 ml-12 sm:ml-auto">
+          <div class="servings">
             <span><i class="icon icon-users"></i></span>
             <span class="text-primary-md-bold">${data.servings}</span> SERVINGS
             <div class="flex items-center ml-2 gap-1">
-              <button class="btn-serving"><i class="icon icon-minus"></i></button>
-              <button class="btn-serving"><i class="icon icon-add"></i></button>
+              <button class="btn-serving" data-update-to="${
+                data.servings - 1
+              }"><i class="icon icon-minus"></i></button>
+              <button class="btn-serving" data-update-to="${
+                data.servings + 1
+              }"><i class="icon icon-add"></i></button>
             </div>
           </div>
 
@@ -88,7 +101,9 @@ class RecipeView extends View {
       <li class="grid [grid-template-columns:0fr_1fr] gap-2">
         <span class="text-primary-blue"><i class="icon icon-tick-circle"></i></span>
         <div class="flex gap-2">
-          <span>${ing.quantity ? new Fraction(ing.quantity) : ''}</span>
+          <span class="whitespace-nowrap">${
+            ing.quantity ? new Fraction(ing.quantity) : ''
+          }</span>
           <p>${ing.unit} ${ing.description}</p>
         </div>
       </li>

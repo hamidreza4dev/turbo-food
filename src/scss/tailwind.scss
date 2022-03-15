@@ -247,6 +247,10 @@
   .btn-serving {
     @apply transition-transform hover:rotate-180 duration-300;
   }
+
+  .servings {
+    @apply flex items-center gap-1 ml-12 sm:ml-auto;
+  }
 }
 
 @layer components {
