@@ -1,4 +1,6 @@
-@import './icons.scss';
+@layer base {
+  @import './icons.scss';
+}
 @import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');
 
 @tailwind base;
@@ -234,5 +236,11 @@
 
   .btn-serving {
     @apply transition-transform hover:rotate-180 duration-300;
+  }
+}
+
+@layer components {
+  .spinner {
+    @apply animate-rotate inline-block;
   }
 }
