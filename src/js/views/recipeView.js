@@ -4,6 +4,13 @@ import { Fraction } from 'fractional';
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _errMsg = "Error : can't load recipe form server :(";
+  _successMsg = 'Start by searching for a recipe or an ingredient. Have fun!';
+
+  addHandlerRender(handler) {
+    ['load', 'hashchange'].forEach((ev) => {
+      window.addEventListener(ev, handler);
+    });
+  }
 
   _generateMarkup(data = this._data) {
     return `
@@ -17,7 +24,7 @@ class RecipeView extends View {
         </figure>
 
         <div class="-rotate-6 w-1/2 text-4xl text-white font-black absolute top-full left-1/2 -translate-y-3/4 -translate-x-1/2 text-center lg:text-2xl md:w-11/12">
-          <span class="recipe-title">CAULIFLOWER PIZZA CRUST (WITH BBQ CHICKEN PIZZA)</span>
+          <span class="recipe-title">${data.title}</span>
         </div>
       </div>
 

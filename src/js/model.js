@@ -1,5 +1,10 @@
 export const state = {
   recipe: {},
+  search: {
+    result: [],
+    query: '',
+    sortingMethod: 'none',
+  },
 };
 
 export const loadRecipe = function (data) {
@@ -14,4 +19,17 @@ export const loadRecipe = function (data) {
     cookingTime: recipe.cooking_time,
     id: recipe.id,
   };
+};
+
+export const loadSearchResult = function (data) {
+  const { recipes } = data.data;
+  state.search.result = recipes.map((recipe) => {
+    return {
+      publisher: recipe.publisher,
+      image: recipe.image_url,
+      title: recipe.title,
+      id: recipe.id,
+      price: Math.floor(Math.random() * 100),
+    };
+  });
 };

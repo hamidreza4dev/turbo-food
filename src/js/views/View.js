@@ -4,6 +4,7 @@ export default class View {
   render(data) {
     if (!data && !Array.from(data).length) this.renderError();
 
+    this._clear();
     this._data = data;
     const markup = this._generateMarkup();
     this._parentElement.insertAdjacentHTML('beforeend', markup);
@@ -17,8 +18,8 @@ export default class View {
     this._clear();
 
     const markup = `
-      <div>
-        <div class="spinner"><i class="icon icon-spinner !text-6xl text-primary-blue"></i></div>
+      <div class="flex">
+        <div class="spinner mx-auto my-12"><i class="icon icon-spinner !text-7xl text-primary-blue"></i></div>
       </div>
     `;
 
@@ -33,6 +34,23 @@ export default class View {
         <div class="flex text-primary-red items-center gap-3 max-w-lg">
           <div>
             <span><i class="icon icon-error !text-6xl"></i></span>
+          </div>
+          <p class="grow text-2xl">${message}</p>
+        </div>
+      </div>
+    `;
+
+    this._parentElement.insertAdjacentHTML('beforeend', markup);
+  }
+
+  renderMessage(message = this._successMsg) {
+    this._clear();
+
+    const markup = `
+      <div class="flex justify-center item-center my-12">
+        <div class="flex text-primary-blue items-center gap-3 max-w-lg">
+          <div>
+            <span><i class="icon icon-emoji-happy !text-6xl"></i></span>
           </div>
           <p class="grow text-2xl">${message}</p>
         </div>
