@@ -35,6 +35,9 @@ const controlRecipe = async function () {
 
     // 3. render recipe in View
     recipeView.render(state.recipe);
+
+    // 4. update result
+    resultView.update(state.search.result);
   } catch (error) {
     console.error(error);
     recipeView.renderError();
@@ -44,7 +47,9 @@ const controlRecipe = async function () {
 const controlServingsUpdate = function (updateTo) {
   updateServings(updateTo);
 
-  recipeView.render(state.recipe);
+  recipeView.update(state.recipe);
+
+  // recipeView.render(state.recipe);
 };
 
 // search handlers

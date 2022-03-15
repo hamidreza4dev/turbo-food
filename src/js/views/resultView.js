@@ -7,7 +7,9 @@ class ResultView extends View {
     return data
       .map((result) => {
         return `
-        <a class="preview" href="#${result.id}">
+        <a class="preview ${
+          result.id === window.location.hash.slice(1) ? 'active' : ''
+        }" href="#${result.id}">
           <figure class="preview-image">
             <img
               src="${result.image}"

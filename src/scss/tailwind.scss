@@ -186,6 +186,10 @@
 
   .preview {
     @apply p-4 flex gap-3 items-center transition hover:bg-primary-lighten hover:-translate-y-1;
+
+    &.active {
+      @apply bg-primary-lighten;
+    }
   }
 
   .preview-image {
