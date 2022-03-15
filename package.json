@@ -15,6 +15,7 @@
     "@tailwindcss/line-clamp": "^0.3.1",
     "css-loader": "^6.6.0",
     "fantasticon": "^1.2.3",
+    "fractional": "^1.0.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.5.3",

@@ -18,6 +18,16 @@ module.exports = {
       boxShadow: {
         primary: '0px 8px 16px rgba(41, 45, 50, 0.1)',
       },
+
+      animation: {
+        rotate: 'rotate 1500ms ease-in-out infinite',
+      },
+      keyframes: {
+        rotate: {
+          '0%': { transform: 'rotate(0)' },
+          '100%': { transform: 'rotate(-1turn)' },
+        },
+      },
     },
 
     screens: {
