@@ -49,7 +49,7 @@ const controlRecipe = async function () {
     recipeView.render(state.recipe);
 
     // 4. update result
-    resultView.update(state.search.result);
+    resultView.update(sliceResult());
 
     // 5. render bookmarks
     bookmarksView.render(state.bookmarks);
