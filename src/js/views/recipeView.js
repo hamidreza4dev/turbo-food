@@ -12,6 +12,14 @@ class RecipeView extends View {
     });
   }
 
+  addBookmarkHandler(handler) {
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.bookmark-btn');
+      if (!btn) return;
+      handler();
+    });
+  }
+
   addHandlerServings(handler) {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.btn-serving');
@@ -59,13 +67,15 @@ class RecipeView extends View {
             </div>
           </div>
 
-          <div class="flex items-center gap-2 ml-auto sm:w-full">
+          <div class="recipe-handlers">
             <div class="flex items-center justify-center">
               <span class="main-icon"><i class="icon icon-user"></i></span>
             </div>
 
             <div class="flex items-center justify-center">
-              <button class="bookmark-btn"><i class="icon icon-bookmark"></i></button>
+              <button class="bookmark-btn ${
+                data.bookmarked ? 'active' : ''
+              }"><i class="icon icon-bookmark"></i></button>
             </div>
           </div>
         </div>

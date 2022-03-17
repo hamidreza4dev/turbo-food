@@ -2,12 +2,16 @@ import './app';
 import { API_URL, searchQueries } from './config';
 import { getJSON } from './helpers';
 import {
+  addBookmark,
+  clearBookmark,
+  deleteBookmark,
   loadRecipe,
   loadSearchResult,
   sliceResult,
   state,
   updateServings,
 } from './model';
+import bookmarksView from './views/bookmarksView';
 import paginationView from './views/paginationView';
 import queryView from './views/queryView';
 import recipeView from './views/recipeView';
@@ -122,9 +126,30 @@ const controlPagination = function (goto) {
   paginationView.render(state.search);
 };
 
+// handler bookmarks :)
+const controlAddBookmark = function () {
+  state.recipe.bookmarked
+    ? deleteBookmark(state.recipe)
+    : addBookmark(state.recipe);
+
+  // update recipe view
+  recipeView.update(state.recipe);
+
+  // render bookmarks
+  bookmarksView.render(state.bookmarks);
+};
+
+const controlBookmark = function () {
+  clearBookmark();
+  bookmarksView.render(state.bookmarks);
+};
+
 const init = (function () {
   recipeView.addHandlerRender(controlRecipe);
   recipeView.addHandlerServings(controlServingsUpdate);
+
+  recipeView.addBookmarkHandler(controlAddBookmark);
+  bookmarksView.addClearHandler(controlBookmark);
 
   paginationView.addHandlerClick(controlPagination);
   searchView.addHandlerSearch(controlSearch);

@@ -248,6 +248,10 @@
     }
   }
 
+  .recipe-handlers {
+    @apply flex items-center gap-2 ml-auto sm:w-full;
+  }
+
   .btn-serving {
     @apply transition-transform hover:rotate-180 duration-300;
   }

@@ -1,3 +1,5 @@
+import { RES_PER_PAGE } from './config';
+
 export const state = {
   recipe: {},
   search: {
@@ -5,9 +7,11 @@ export const state = {
     query: '',
     page: 1,
     sortingMethod: 'none',
-    resultsPerPage: 10,
+    resultsPerPage: RES_PER_PAGE,
   },
+  bookmarks: [],
 };
+
 /**
  * store received object into recipe state
  * @param  {Object} data
@@ -24,6 +28,7 @@ export const loadRecipe = function (data) {
     servings: recipe.servings,
     cookingTime: recipe.cooking_time,
     id: recipe.id,
+    price: Math.floor(Math.random() * 100),
   };
 };
 
@@ -44,6 +49,7 @@ export const loadSearchResult = function (data) {
     };
   });
 };
+
 /**
  * get period of search result page
  * @param  {Number} [page=state.search.page]
@@ -57,6 +63,7 @@ export const sliceResult = function (page = state.search.page) {
 
   return state.search.result.slice(start, end);
 };
+
 /**
  * change number of servings in state :)
  * @param  {Number} newServings
@@ -68,4 +75,35 @@ export const updateServings = function (newServings) {
   });
 
   state.recipe.servings = newServings;
+};
+
+/**
+ * add bookmark to state
+ * @param  {Object} recipe current recipe object (from state)
+ * @return {undefined} undefined
+ */
+export const addBookmark = function (recipe) {
+  state.bookmarks.push(recipe);
+
+  // make current recipe bookmark
+  if (recipe.id == state.recipe.id) state.recipe.bookmarked = true;
+};
+
+/**
+ * remove bookmark from state
+ * @param  {Object} recipe current recipe object (from state)
+ * @return {undefined} undefined
+ */
+export const deleteBookmark = function (recipe) {
+  const targetRecipe = state.bookmarks.findIndex(recipe.id);
+
+  // delete action
+  state.bookmarks.splice(targetRecipe, 1);
+
+  // remove current recipe bookmark
+  if (recipe.id == state.recipe.id) state.recipe.bookmarked = false;
+};
+
+export const clearBookmark = function () {
+  state.bookmarks = [];
 };
