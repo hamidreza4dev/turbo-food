@@ -5,6 +5,7 @@ import {
   addBookmark,
   clearBookmark,
   deleteBookmark,
+  loadBookmarks,
   loadRecipe,
   loadSearchResult,
   sliceResult,
@@ -39,16 +40,18 @@ const controlRecipe = async function () {
       return;
     }
 
-    const data = await AJAX(`${API_URL}/recipes/${id}?key=${API_KEY}`);
-
     // 2. store recipe in state
-    loadRecipe(data);
+    await loadRecipe(id);
 
     // 3. render recipe in View
     recipeView.render(state.recipe);
 
     // 4. update result
     resultView.update(state.search.result);
+
+    // 5. render bookmarks
+    loadBookmarks();
+    bookmarksView.render(state.bookmarks);
   } catch (error) {
     console.error(error);
     recipeView.renderError();

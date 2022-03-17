@@ -43,8 +43,15 @@ const createRecipeObject = function (data) {
  * @param  {Object} data
  * @returns {undefined} undefined
  */
-export const loadRecipe = function (data) {
+export const loadRecipe = async function (id) {
+  const data = await AJAX(`${API_URL}/recipes/${id}?key=${API_KEY}`);
   state.recipe = createRecipeObject(data);
+
+  if (state.bookmarks.some((bookmark) => bookmark.id === id)) {
+    state.recipe.bookmarked = true;
+  } else {
+    state.recipe.bookmarked = false;
+  }
 };
 
 /**
@@ -92,6 +99,15 @@ export const updateServings = function (newServings) {
   state.recipe.servings = newServings;
 };
 
+export const loadBookmarks = function () {
+  state.bookmarks =
+    JSON.parse(localStorage.getItem('turbo_food_bookmarks')) || [];
+};
+
+export const storeBookmarks = function () {
+  localStorage.setItem('turbo_food_bookmarks', JSON.stringify(state.bookmarks));
+};
+
 /**
  * add bookmark to state
  * @param  {Object} recipe current recipe object (from state)
@@ -102,6 +118,8 @@ export const addBookmark = function (recipe) {
 
   // make current recipe bookmark
   if (recipe.id == state.recipe.id) state.recipe.bookmarked = true;
+
+  storeBookmarks();
 };
 
 /**
@@ -119,10 +137,14 @@ export const deleteBookmark = function (recipe) {
 
   // remove current recipe bookmark
   if (recipe.id == state.recipe.id) state.recipe.bookmarked = false;
+
+  storeBookmarks();
 };
 
 export const clearBookmark = function () {
   state.bookmarks = [];
+
+  storeBookmarks();
 };
 
 // upload recipe
