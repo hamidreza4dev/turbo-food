@@ -166,10 +166,10 @@
     }
 
     .btn-rounded {
-      @apply px-3;
+      @apply lg:px-3;
 
       span {
-        @apply hidden;
+        @apply lg:hidden;
       }
     }
 
@@ -181,7 +181,7 @@
   }
 
   .search-list {
-    @apply absolute bg-white rounded-primary w-full max-h-[40vh] z-20 shadow-2xl shadow-gray-900/10 p-2 top-full overflow-y-scroll
+    @apply absolute bg-white rounded-primary w-full max-h-[40vh] xs:max-h-[50vh] z-20 shadow-2xl shadow-gray-900/10 p-2 top-full overflow-y-scroll
           opacity-0 -translate-y-2 pointer-events-none transition;
 
     .search-list-item {
@@ -248,15 +248,23 @@
   }
 
   .sidebar {
-    @apply lg:rounded-primary w-4/12 bg-white rounded-tr-primary rounded-bl-primary overflow-hidden flex flex-col py-4
-    lg:absolute lg:z-10 lg:h-[calc(100%-2rem)] lg:w-[calc(100%-4rem)] sm:h-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)] xs:w-[calc(100%-1.5rem)]
-    lg:pointer-events-none lg:opacity-0 lg:transition-opacity;
+    // this is for active state with absolute positioning
+    /* @apply lg:rounded-primary w-4/12 bg-white rounded-tr-primary rounded-bl-primary overflow-hidden flex flex-col py-4
+    lg:absolute lg:z-10 lg:h-[calc(100%-2rem)] lg:w-[calc(100%-4rem)] sm:h-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)] xs:w-[calc(100%-1.5rem)] xs:h-[calc(100%-0.75rem)]
+    lg:pointer-events-none lg:opacity-0 lg:transition-opacity; */
+
+    @apply lg:rounded-primary w-4/12 bg-white rounded-tr-primary rounded-bl-primary overflow-hidden flex flex-col py-4 lg:hidden lg:w-full;
 
     &.active {
-      @apply lg:pointer-events-auto lg:opacity-100;
+      // @apply lg:pointer-events-auto lg:opacity-100;
+      @apply lg:flex animate__animated animate__fadeIn;
 
-      & ~ .recipe .back-btn {
-        @apply opacity-0 pointer-events-none;
+      & ~ .recipe {
+        @apply hidden;
+
+        & .back-btn {
+          @apply opacity-0 pointer-events-none;
+        }
       }
     }
   }

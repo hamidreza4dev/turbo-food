@@ -55,8 +55,10 @@ class RecipeView extends View {
           />
         </figure>
 
-        <div class="-rotate-6 w-1/2 text-4xl text-white font-black absolute top-full left-1/2 -translate-y-3/4 -translate-x-1/2 text-center lg:text-2xl md:w-11/12">
-          <span class="recipe-title">${data.title}</span>
+        <div class="animate__animated animate__jello [animation-delay:400ms]">
+          <div class="-rotate-6 w-1/2 text-4xl text-white font-black absolute top-full left-1/2 -translate-y-3/4 -translate-x-1/2 text-center lg:text-2xl md:w-11/12">
+            <span class="recipe-title">${data.title}</span>
+          </div>
         </div>
       </div>
 
