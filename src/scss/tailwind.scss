@@ -226,7 +226,7 @@
     @apply pr-9 lg:pr-0 w-8/12 lg:w-full;
 
     .back-btn {
-      @apply flex items-center gap-2 px-4 py-2 rounded-primary bg-white shadow-2xl font-bold hover:translate-x-2 transition;
+      @apply items-center gap-2 px-4 py-2 rounded-primary bg-white shadow-2xl font-bold hover:translate-x-2 transition hidden lg:flex;
     }
 
     .recipe-image {
@@ -241,7 +241,7 @@
 
   .sidebar {
     @apply lg:rounded-primary w-4/12 bg-white rounded-tr-primary rounded-bl-primary overflow-hidden flex flex-col py-4
-    lg:absolute lg:z-10 lg:h-[calc(100%-2rem)] lg:w-[calc(100%-4rem)] sm:h-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)]
+    lg:absolute lg:z-10 lg:h-[calc(100%-2rem)] lg:w-[calc(100%-4rem)] sm:h-[calc(100%-1.5rem)] sm:w-[calc(100%-3rem)] xs:w-[calc(100%-1.5rem)]
     lg:pointer-events-none lg:opacity-0 lg:transition-opacity;
 
     &.active {
@@ -272,7 +272,7 @@
   }
 
   .recipe-handlers {
-    @apply flex items-center gap-2 ml-auto sm:w-full;
+    @apply flex items-center gap-2 ml-auto sm:w-full xs:w-auto;
   }
 
   .btn-serving {
@@ -280,7 +280,7 @@
   }
 
   .servings {
-    @apply flex items-center gap-1 ml-12 sm:ml-auto;
+    @apply flex items-center gap-1 ml-12 sm:ml-auto xs:ml-0 xs:order-last xs:w-full;
   }
 }
 

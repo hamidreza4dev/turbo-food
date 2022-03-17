@@ -61,7 +61,7 @@ class RecipeView extends View {
       </div>
 
       <div>
-        <div class="flex py-24 px-20 text-primary-md-normal text-primary-dark lg:px-12 md:px-0 sm:flex-wrap sm:gap-y-4 sm:pb-12">
+        <div class="flex py-24 px-20 text-primary-md-normal text-primary-dark lg:px-12 md:px-0 sm:flex-wrap sm:gap-y-4 sm:pb-12 xs:pt-16">
           <div class="flex items-center gap-1">
             <span><i class="icon icon-timer"></i></span>
             <span class="text-primary-md-bold">${
