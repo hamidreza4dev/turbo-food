@@ -3,7 +3,8 @@ import '../scss/tailwind.scss';
 const navItems = document.querySelectorAll('.nav-item:not(:first-child)');
 const navHandler = document.querySelector('.nav-handler');
 
-if (window.innerWidth < 1140) {
+if (window.innerWidth < 1023) {
+  const overlay = document.querySelector('.overlay-sm');
   navItems.forEach((item) =>
     item.addEventListener('click', function () {
       const panel = item.querySelector('.nav-action ~ .nav-dropdown');

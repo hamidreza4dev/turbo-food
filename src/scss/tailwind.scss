@@ -57,10 +57,14 @@
     margin: 0 !important;
     padding: 0 !important;
     z-index: 50;
+
+    &.active {
+      @apply opacity-100 pointer-events-auto;
+    }
   }
 
-  .overlay.active {
-    @apply opacity-100 pointer-events-auto;
+  .overlay-sm {
+    @extend .overlay;
   }
 }
 
@@ -136,7 +140,8 @@
 
   .nav-dropdown {
     @apply transition opacity-0 -translate-y-2 pointer-events-none absolute bg-white rounded-primary right-0 top-full z-50 w-96 py-4 overflow-hidden
-    group-hover:opacity-100 group-hover:-translate-y-1 group-hover:pointer-events-auto;
+    group-hover:opacity-100 group-hover:-translate-y-1 group-hover:pointer-events-auto
+    xs:w-[90vw];
 
     &.active {
       @apply opacity-100 -translate-y-1 pointer-events-auto;
@@ -220,6 +225,10 @@
   .recipe {
     @apply pr-9 lg:pr-0 w-8/12 lg:w-full;
 
+    .back-btn {
+      @apply flex items-center gap-2 px-4 py-2 rounded-primary bg-white shadow-2xl font-bold hover:translate-x-2 transition;
+    }
+
     .recipe-image {
       @extend .blue-overlay;
       @apply before:rounded-primary;
@@ -237,6 +246,10 @@
 
     &.active {
       @apply lg:pointer-events-auto lg:opacity-100;
+
+      & ~ .recipe .back-btn {
+        @apply opacity-0 pointer-events-none;
+      }
     }
   }
 }

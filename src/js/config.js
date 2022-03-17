@@ -9,6 +9,8 @@ export const CLOUD_NAME = 'dvfhnalqi';
 export const UPLOAD_PRESET = 'turbo_food';
 export const CLOUD_URL = 'https://api.cloudinary.com/v1_1';
 
+export const LOCAL_STORAGE_KEY = 'turbo_food_bookmarks';
+
 export const searchQueries = [
   'carrot',
   'broccoli',

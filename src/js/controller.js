@@ -190,7 +190,7 @@ const controlUploadRecipe = async function (recipe, file) {
 const init = (function () {
   recipeView.addHandlerRender(controlRecipe);
   recipeView.addHandlerServings(controlServingsUpdate);
-
+  recipeView.addBackToSidebarHandler();
   recipeView.addBookmarkHandler(controlAddBookmark);
   bookmarksView.addClearHandler(controlBookmark);
 

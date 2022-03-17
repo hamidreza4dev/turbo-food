@@ -43,6 +43,20 @@ export default class View {
     this._parentElement.innerHTML = '';
   }
 
+  showSidebar() {
+    if (window.innerWidth < 1023) {
+      document.querySelector('.sidebar').classList.add('active');
+      document.querySelector('.recipe').classList.add('hidden');
+    }
+  }
+
+  hideSidebar() {
+    if (window.innerWidth < 1023) {
+      document.querySelector('.sidebar').classList.remove('active');
+      document.querySelector('.recipe').classList.remove('hidden');
+    }
+  }
+
   renderSpinner() {
     this._clear();
 

@@ -3,6 +3,7 @@ import {
   API_URL,
   CLOUD_NAME,
   CLOUD_URL,
+  LOCAL_STORAGE_KEY,
   RES_PER_PAGE,
   UPLOAD_PRESET,
 } from './config';
@@ -100,12 +101,11 @@ export const updateServings = function (newServings) {
 };
 
 export const loadBookmarks = function () {
-  state.bookmarks =
-    JSON.parse(localStorage.getItem('turbo_food_bookmarks')) || [];
+  state.bookmarks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 };
 
 export const storeBookmarks = function () {
-  localStorage.setItem('turbo_food_bookmarks', JSON.stringify(state.bookmarks));
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.bookmarks));
 };
 
 /**

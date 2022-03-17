@@ -8,7 +8,10 @@ class RecipeView extends View {
 
   addHandlerRender(handler) {
     ['load', 'hashchange'].forEach((ev) => {
-      window.addEventListener(ev, handler);
+      window.addEventListener(ev, () => {
+        this.hideSidebar();
+        handler();
+      });
     });
   }
 
@@ -29,9 +32,21 @@ class RecipeView extends View {
     });
   }
 
+  addBackToSidebarHandler() {
+    this._parentElement.addEventListener('click', (e) => {
+      const btn = e.target.closest('.back-btn');
+      if (!btn) return;
+      this.showSidebar();
+    });
+  }
+
   _generateMarkup(data = this._data) {
     return `
       <div class="relative">
+        <div class="absolute top-2 left-2 z-10">
+          <button class="back-btn"><i class="icon icon-arrow-left"></i> back</button>
+        </div>
+
         <figure class="recipe-image">
           <img
             src="${data.image}"
