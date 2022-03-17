@@ -40,6 +40,8 @@ const controlRecipe = async function () {
       return;
     }
 
+    loadBookmarks();
+
     // 2. store recipe in state
     await loadRecipe(id);
 
@@ -50,7 +52,6 @@ const controlRecipe = async function () {
     resultView.update(state.search.result);
 
     // 5. render bookmarks
-    loadBookmarks();
     bookmarksView.render(state.bookmarks);
   } catch (error) {
     console.error(error);
@@ -178,6 +179,8 @@ const controlUploadRecipe = async function (recipe, file) {
 
     // make same window hash with current recipe id
     window.history.pushState(null, '', `#${state.recipe.id}`);
+
+    window.location.reload();
   } catch (error) {
     uploadRecipeView.renderError();
     console.error(error);

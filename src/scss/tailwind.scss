@@ -246,6 +246,10 @@
     @apply flex items-center justify-center text-primary-blue bg-primary-light rounded-full aspect-square py-2 px-3 transition hover:bg-primary-blue/20;
   }
 
+  .bookmarks {
+    @apply w-full;
+  }
+
   .bookmark-btn {
     @extend .main-icon;
 

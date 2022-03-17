@@ -39,8 +39,8 @@ const createRecipeObject = function (data) {
 };
 
 /**
- * store received object into recipe state
- * @param  {Object} data
+ * get recipe by id and store in state
+ * @param  {String} id hash string (id)
  * @returns {undefined} undefined
  */
 export const loadRecipe = async function (id) {
@@ -142,8 +142,10 @@ export const deleteBookmark = function (recipe) {
 };
 
 export const clearBookmark = function () {
+  if (state.bookmarks.some((bookmark) => bookmark.id === state.recipe.id)) {
+    state.recipe.bookmarked = false;
+  }
   state.bookmarks = [];
-
   storeBookmarks();
 };
 

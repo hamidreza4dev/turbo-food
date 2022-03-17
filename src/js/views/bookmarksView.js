@@ -4,13 +4,31 @@ class BookmarksView extends View {
   _parentElement = document.querySelector('.bookmarks');
 
   addClearHandler(handler) {
-    document.querySelector('.clear-btn').addEventListener('click', handler);
+    this._parentElement.addEventListener('click', function (e) {
+      const btn = e.target.closest('.clear-btn');
+      if (!btn) return;
+      handler();
+    });
   }
 
   _generateMarkup(data = this._data) {
-    return data
-      .map((result) => {
-        return `
+    return (
+      data.map(this._generateBookmarkMarkup).join('') +
+      (this._data.length
+        ? `
+          <div class="p-4 pb-0">
+            <button class="clear-btn">
+              <span><i class="icon icon-clear"></i></span>
+              clear <span>${this._data.length}</span> items
+            </button>
+          </div>
+        `
+        : '<p class="text-primary-dark text-center py-8">No bookmarks yet !</p>')
+    );
+  }
+
+  _generateBookmarkMarkup(result) {
+    return `
         <a class="preview ${
           result.id === window.location.hash.slice(1) ? 'active' : ''
         }" href="#${result.id}">
@@ -31,8 +49,6 @@ class BookmarksView extends View {
           </div>
         </a>
       `;
-      })
-      .join('');
   }
 }
 
