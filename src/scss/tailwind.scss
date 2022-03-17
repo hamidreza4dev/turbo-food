@@ -68,7 +68,13 @@
   .upload-recipe-form {
     [type='text'],
     [type='number'] {
-      @apply border border-primary-light rounded-md p-2 placeholder:text-primary-dark/40 outline-none focus:bg-primary-light/40 transition col-span-3;
+      @apply border rounded-md p-2 placeholder:text-primary-dark/40 outline-none transition col-span-3
+             invalid:focus:border-primary-red/30 invalid:focus:bg-primary-red/10
+             valid:focus:border-primary-light valid:focus:bg-primary-light/40;
+
+      &:disabled {
+        @apply opacity-30;
+      }
     }
 
     [type='file'] {

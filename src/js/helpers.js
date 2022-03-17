@@ -16,9 +16,12 @@ export const timeout = function (sec) {
  * @param  {URL} url
  * @returns {JSON} received json from api
  */
-export const getJSON = async function (url) {
+export const AJAX = async function (url, options = { method: 'GET' }) {
   try {
-    const data = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
+    const data = await Promise.race([
+      fetch(url, options),
+      timeout(TIMEOUT_SEC),
+    ]);
     const result = await data.json();
 
     return result;

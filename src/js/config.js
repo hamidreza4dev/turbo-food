@@ -1,6 +1,5 @@
-import { getJSON } from './helpers';
-
 export const API_URL = 'https://forkify-api.herokuapp.com/api/v2';
+export const API_KEY = '13452e39-aa66-4cd9-9400-8fd908f8954c';
 export const TIMEOUT_SEC = 5;
 export const RES_PER_PAGE = 10;
 export const searchQueries = [

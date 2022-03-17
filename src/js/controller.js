@@ -1,6 +1,6 @@
 import './app';
 import { API_URL, searchQueries } from './config';
-import { getJSON } from './helpers';
+import { AJAX } from './helpers';
 import {
   addBookmark,
   clearBookmark,
@@ -10,6 +10,7 @@ import {
   sliceResult,
   state,
   updateServings,
+  uploadRecipe,
 } from './model';
 import bookmarksView from './views/bookmarksView';
 import paginationView from './views/paginationView';
@@ -17,6 +18,11 @@ import queryView from './views/queryView';
 import recipeView from './views/recipeView';
 import resultView from './views/resultView';
 import searchView from './views/searchView';
+import uploadRecipeView from './views/uploadRecipeView';
+
+if (module.hot) {
+  module.hot.accept();
+}
 
 // recipe handlers
 const controlRecipe = async function () {
@@ -32,7 +38,7 @@ const controlRecipe = async function () {
       return;
     }
 
-    const data = await getJSON(`${API_URL}/recipes/${id}`);
+    const data = await AJAX(`${API_URL}/recipes/${id}`);
 
     // 2. store recipe in state
     loadRecipe(data);
@@ -68,9 +74,7 @@ const controlSearch = async function () {
     resultView.renderSpinner();
 
     // 2. load recipe from api
-    const data = await getJSON(
-      `${API_URL}/recipes?search=${state.search.query}`
-    );
+    const data = await AJAX(`${API_URL}/recipes?search=${state.search.query}`);
 
     // 4. store result in state
     loadSearchResult(data);
@@ -142,6 +146,26 @@ const controlAddBookmark = function () {
 const controlBookmark = function () {
   clearBookmark();
   bookmarksView.render(state.bookmarks);
+  recipeView.update(state.recipe);
+};
+
+// upload recipe
+const controlUploadRecipe = async function (recipe) {
+  try {
+    uploadRecipeView.renderSpinner();
+
+    await uploadRecipe(recipe);
+
+    recipeView.render(state.recipe);
+
+    bookmarksView.render(state.bookmarks);
+
+    uploadRecipeView.renderMessage();
+
+    window.history.pushState(null, '', `#${state.recipe.id}`);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const init = (function () {
@@ -158,4 +182,7 @@ const init = (function () {
   queryView.render(searchQueries);
 
   resultView.addSortHandler(controlSearchResultSorting);
+
+  uploadRecipeView.addOpenModalHandler();
+  uploadRecipeView.addFormHandler(controlUploadRecipe);
 })();
