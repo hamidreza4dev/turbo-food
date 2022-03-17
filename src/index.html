@@ -16,17 +16,17 @@
         <h1 class="text-2xl text-primary-dark font-bold mb-6">RECIPE DATA</h1>
         <div class="grid grid-cols-4 md:grid-cols-1 gap-4 items-center">
           <label>Title</label> 
-          <input placeholder="Avocado" name="title" type="text" > 
+          <input placeholder="Avocado" name="title" type="text" required>
           <label>URL</label> 
-          <input placeholder="Htpps://..." name="sourceUrl" type="text" > 
+          <input placeholder="Htpps://..." name="sourceUrl" type="text" required>
           <label>Image</label>
-          <input placeholder="TEST23" name="image" type="file" > 
+          <input name="image" type="file" id="uploadRecipeImage" required> 
           <label>Publisher</label> 
-          <input placeholder="Hamidreza Firouzi"  name="publisher" type="text" > 
+          <input placeholder="Hamidreza Firouzi"  name="publisher" type="text" required>
           <label>Prep time</label>
-          <input placeholder="10" name="cookingTime" type="number" > 
+          <input placeholder="10" name="cookingTime" type="number" required>
           <label>Servings</label> 
-          <input placeholder="10" name="servings" type="number" >
+          <input placeholder="10" name="servings" type="number" required>
         </div>
       </div>
 
@@ -34,7 +34,7 @@
         <h1 class="text-2xl text-primary-dark font-bold mb-6">RECIPE DATA</h1>
         <div class="grid grid-cols-4 md:grid-cols-1 gap-4 items-center">
           <label>Ingredient 1</label>
-          <input placeholder="0.5, kg, Rice" type="text" autocomplete="off" spellcheck="false" name="ingredient-1" required pattern="^[a-zA-Z|^\d*\.?\d*$]+(,\s*[a-zA-Z]+)*$"> 
+          <input placeholder="0.5, kg, Rice" type="text" autocomplete="off" spellcheck="false" name="ingredient-1" required pattern="^[a-zA-Z|^\d*\.?\d*$]+(,\s*[a-zA-Z]+)*$" value="0.5, kg, Rice"> 
           <label>Ingredient 2</label>
           <input placeholder="Format: 'Quantity,Unit,Description'" type="text" autocomplete="off" spellcheck="false" name="ingredient-2" disabled pattern="^[a-zA-Z|^\d*\.?\d*$]+(,\s*[a-zA-Z]+)*$"> 
           <label>Ingredient 3</label>

@@ -19,7 +19,7 @@ class SearchView extends View {
    * @param  {boolean} [clear=true] clear input or no ;)
    */
   getQuery(clear = true) {
-    const query = this._input.value;
+    const query = this._input.value.toLowerCase();
 
     clear && this._clearInput();
 

@@ -1,4 +1,11 @@
-import { API_KEY, API_URL, RES_PER_PAGE } from './config';
+import {
+  API_KEY,
+  API_URL,
+  CLOUD_NAME,
+  CLOUD_URL,
+  RES_PER_PAGE,
+  UPLOAD_PRESET,
+} from './config';
 import { AJAX } from './helpers';
 
 export const state = {
@@ -119,7 +126,7 @@ export const clearBookmark = function () {
 };
 
 // upload recipe
-export const uploadRecipe = async function (newRecipe) {
+export const uploadRecipe = async function (newRecipe, image) {
   try {
     const ingredients = Object.entries(newRecipe)
       .filter(([key, value]) => key.startsWith('ingredient') && value.trim())
@@ -134,7 +141,7 @@ export const uploadRecipe = async function (newRecipe) {
     const recipe = {
       title: newRecipe.title,
       source_url: newRecipe.sourceUrl,
-      image_url: 'newRecipe.image',
+      image_url: image,
       publisher: newRecipe.publisher,
       cooking_time: +newRecipe.cookingTime,
       servings: +newRecipe.servings,
@@ -154,5 +161,29 @@ export const uploadRecipe = async function (newRecipe) {
     addBookmark(state.recipe);
   } catch (error) {
     console.error(error);
+  }
+};
+
+/**
+ * upload image to cloud server
+ * @param  {File} file input[type="file"] target.files
+ */
+export const uploadImage = async function (file) {
+  try {
+    const fd = new FormData();
+    fd.append('upload_preset', UPLOAD_PRESET);
+    fd.append('file', file);
+
+    const data = await AJAX(`${CLOUD_URL}/${CLOUD_NAME}/upload`, {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+      body: fd,
+    });
+
+    return data;
+  } catch (error) {
+    throw error;
   }
 };

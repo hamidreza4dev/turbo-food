@@ -10,6 +10,7 @@ import {
   sliceResult,
   state,
   updateServings,
+  uploadImage,
   uploadRecipe,
 } from './model';
 import bookmarksView from './views/bookmarksView';
@@ -152,11 +153,19 @@ const controlBookmark = function () {
 };
 
 // upload recipe
-const controlUploadRecipe = async function (recipe) {
+
+/**
+ * handler for uploading recipe to api
+ * @param  {} recipe recipe Object should upload to api
+ * @param  {} file image file that
+ */
+const controlUploadRecipe = async function (recipe, file) {
   try {
     uploadRecipeView.renderSpinner();
 
-    await uploadRecipe(recipe);
+    const { url } = await uploadImage(file);
+
+    await uploadRecipe(recipe, url);
 
     recipeView.render(state.recipe);
 
@@ -164,8 +173,10 @@ const controlUploadRecipe = async function (recipe) {
 
     uploadRecipeView.renderMessage();
 
+    // make same window hash with current recipe id
     window.history.pushState(null, '', `#${state.recipe.id}`);
   } catch (error) {
+    uploadRecipeView.renderError();
     console.error(error);
   }
 };
