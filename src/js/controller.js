@@ -1,5 +1,5 @@
 import './app';
-import { API_URL, searchQueries } from './config';
+import { API_KEY, API_URL, searchQueries } from './config';
 import { AJAX } from './helpers';
 import {
   addBookmark,
@@ -38,7 +38,7 @@ const controlRecipe = async function () {
       return;
     }
 
-    const data = await AJAX(`${API_URL}/recipes/${id}`);
+    const data = await AJAX(`${API_URL}/recipes/${id}?key=${API_KEY}`);
 
     // 2. store recipe in state
     loadRecipe(data);
@@ -74,7 +74,9 @@ const controlSearch = async function () {
     resultView.renderSpinner();
 
     // 2. load recipe from api
-    const data = await AJAX(`${API_URL}/recipes?search=${state.search.query}`);
+    const data = await AJAX(
+      `${API_URL}/recipes?search=${state.search.query}&key=${API_KEY}`
+    );
 
     // 4. store result in state
     loadSearchResult(data);
