@@ -16,18 +16,8 @@ if (window.innerWidth < 1023) {
       overlay.addEventListener('click', toggleDropDown, { once: true });
 
       function toggleDropDown() {
-        console.log(
-          overlay.className.includes('active'),
-          panel.className.includes('active')
-        );
-
         panel.classList.toggle('active');
         overlay.classList.toggle('active');
-
-        console.log(
-          overlay.className.includes('active'),
-          panel.className.includes('active')
-        );
 
         navHandler.classList.toggle('!pointer-events-none');
         navHandler.classList.toggle('bg-opacity-50');

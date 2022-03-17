@@ -165,6 +165,14 @@
       @apply placeholder:text-primary-dark/40 rounded-full outline-none w-64 pl-4 xl:w-44 lg:w-full;
     }
 
+    .btn-rounded {
+      @apply px-3;
+
+      span {
+        @apply hidden;
+      }
+    }
+
     &.active {
       & ~ .search-list {
         @apply opacity-100 translate-y-2 pointer-events-auto;
