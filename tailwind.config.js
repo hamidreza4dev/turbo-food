@@ -40,5 +40,12 @@ module.exports = {
       xs: { max: '536px' },
     },
   },
-  plugins: [require('@tailwindcss/line-clamp')],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('tailwindcss-animatecss')({
+      classes: ['animate__fadeIn', 'animate__jello', 'animate__animated'],
+      settings: {},
+      variants: ['responsive', 'hover', 'reduced-motion'],
+    }),
+  ],
 };
